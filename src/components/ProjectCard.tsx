@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Mic, Play, Calendar } from 'lucide-react';
 import { Tables } from '@/integrations/supabase/types';
+import { useNavigate } from 'react-router-dom';
 
 type VoiceProject = Tables<'voice_projects'>;
 
@@ -11,12 +12,18 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
+  const navigate = useNavigate();
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString();
   };
 
+  const openProject = () => {
+    navigate(`/project/${project.id}`);
+  };
+
   return (
-    <Card className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-colors cursor-pointer">
+    <Card className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-colors cursor-pointer" onClick={openProject}>
       <CardHeader>
         <div className="flex items-center justify-between">
           <Mic className="w-6 h-6 text-purple-400" />
@@ -35,7 +42,14 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           <div className="text-sm text-slate-400">
             Voice samples: 0 • Generated: 0
           </div>
-          <Button size="sm" className="bg-purple-600 hover:bg-purple-700">
+          <Button 
+            size="sm" 
+            className="bg-purple-600 hover:bg-purple-700"
+            onClick={(e) => {
+              e.stopPropagation();
+              openProject();
+            }}
+          >
             <Play className="w-3 h-3 mr-1" />
             Open
           </Button>
