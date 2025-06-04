@@ -4,7 +4,7 @@ import { User } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Plus, LogOut, Mic, FileAudio, Waveform } from 'lucide-react';
+import { Plus, LogOut, Mic, FileAudio, Waves } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import ProjectCard from './ProjectCard';
 import CreateProjectDialog from './CreateProjectDialog';
@@ -63,7 +63,7 @@ const Dashboard = ({ user }: DashboardProps) => {
           <div className="flex items-center space-x-3">
             <div className="relative">
               <Mic className="w-8 h-8 text-purple-400" />
-              <Waveform className="w-6 h-6 text-blue-400 absolute -right-2 -bottom-1" />
+              <Waves className="w-6 h-6 text-blue-400 absolute -right-2 -bottom-1" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">VoiceClone AI</h1>
